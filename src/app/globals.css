@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ---------- DARK MODE ONLY ---------- */
+  :root {
+    --background: 0 0% 7%;      /* #121212 */
+    --foreground: 0 0% 100%;
+
+    --primary: 180 100% 25%;    /* #008080 */
+    --primary-foreground: 0 0% 100%;
+
+    --muted-foreground: 0 0% 7%; /* #121212 */
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 180 100% 25%;
+
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --secondary: var(--background);
+    --secondary-foreground: var(--foreground);
+    --accent: var(--primary);
+    --accent-foreground: var(--primary-foreground);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 0rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-body antialiased;
+    /* Gradient background with #008080 in center, gradually lightening then darkening */
+    background: radial-gradient(ellipse at center, #008080 0%, #20B2AA 25%, #87CEEB 50%, #4682B4 75%, #2F4F4F 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
