@@ -28,7 +28,7 @@ export const PlayerIcon = ({ direction, style }: PlayerIconProps) => {
         transition: 'transform 100ms ease-in-out',
       }}
     >
-      <circle cx="12" cy="12" r="11" fill="hsl(var(--primary))" />
+      <circle cx="12" cy="12" r="11" fill="#FFFF00" />
       <path d={mouthPath} fill="hsl(var(--background))" />
       <circle cx="12" cy="7" r="1.5" fill="hsl(var(--background))" />
     </svg>

@@ -23,10 +23,10 @@ import {
 } from '@/lib/game-constants';
 import { useToast } from './use-toast';
 
-// Helper to safely add score without breaching the 80-point cap
+// Helper to safely add score without breaching the 80-point cap and format to 1 decimal
 const clampAdd = (setter: (cb: (n: number) => number) => void) =>
   (points: number) =>
-    setter(s => Math.min(MAX_POINTS, s + points));
+    setter(s => Number(Math.min(MAX_POINTS, s + points).toFixed(1)));
 
 export const useGameEngine = () => {
     const [gameState, setGameState] = useState<GameState>('pre-game');
@@ -53,14 +53,15 @@ export const useGameEngine = () => {
     useEffect(() => {
         const storedHighScore = localStorage.getItem('coinChaseHighScore');
         if (storedHighScore) {
-            setHighScore(parseInt(storedHighScore, 10));
+            setHighScore(parseFloat(storedHighScore));
         }
     }, []);
 
     useEffect(() => {
       if (score > highScore) {
-        setHighScore(score);
-        localStorage.setItem('coinChaseHighScore', String(score));
+        const formattedScore = Number(score.toFixed(1));
+        setHighScore(formattedScore);
+        localStorage.setItem('coinChaseHighScore', String(formattedScore));
       }
     }, [score, highScore]);
 

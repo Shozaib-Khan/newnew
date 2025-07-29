@@ -9,14 +9,14 @@ import { useSwipe } from "@/hooks/use-swipe";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 
-const MAX_TRIES_PER_DAY = 30;
+const MAX_TRIES_PER_DAY = 34;
 const STORAGE_KEY_COUNT = "coinChasePlays";
 const STORAGE_KEY_DATE = "coinChaseLastPlay";
 
 export default function Home() {
   const {
     gameState,
-    setGameState, // Make sure this is exported from useGameEngine
+    setGameState,
     score,
     highScore,
     maze,
@@ -87,7 +87,7 @@ export default function Home() {
     onSwipedDown: () => handleSetDirection("down")
   });
 
-  // Modal close - CORRECTED VERSION
+  // Modal close
   const handleCloseModal = useCallback(() => {
     setGameState('pre-game');
     refreshPlayState(); // Re-evaluate remaining tries
@@ -127,6 +127,7 @@ export default function Home() {
         highScore={highScore}
         onPlayAgain={startGameIfAllowed}
         onClose={handleCloseModal}
+        playsLeft={playsLeft}
       />
     </main>
   );

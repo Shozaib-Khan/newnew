@@ -1,4 +1,4 @@
-export const MAX_POINTS = 250;          // hard cap per play-through
+export const MAX_POINTS = 100;          // hard cap per play-through
 export const TILE_SIZE = 20;
 
 export const GAME_SPEED = 90;
@@ -9,9 +9,9 @@ export const PLAYER_SPEED_DIVISOR = 1;   // 1 tile every 2 ticks  (2 = ~½ speed
 
 
 /* raw values – score is clamped to MAX_POINTS in the engine */
-export const GHOST_POINTS = 2;
-export const AARNA_COIN_POINTS = 10;
-export const NORMAL_COIN_POINTS = 1;
+export const GHOST_POINTS = 0.5;
+export const AARNA_COIN_POINTS = 5;
+export const NORMAL_COIN_POINTS = 0.2;
 
 /* fixed locations from which one will be chosen for the Aarna coin */
 export const AARNA_COIN_FIXED_POSITIONS = [

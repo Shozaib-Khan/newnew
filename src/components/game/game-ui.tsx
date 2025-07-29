@@ -7,17 +7,22 @@ interface GameUIProps {
 }
 
 export const GameUI = ({ score, highScore, playsLeft = 3 }: GameUIProps) => {
+  // Helper function to format scores with max 1 decimal place
+  const formatScore = (value: number) => {
+    return Number(value.toFixed(1));
+  };
+
   return (
     <div className="w-full max-w-lg sm:max-w-xl">
       {/* Main score display - centered */}
       <div className="flex justify-center items-center gap-8 text-primary font-headline text-base mb-4">
         <div className="text-center">
           <span className="uppercase text-muted-foreground text-xs sm:text-sm block text-white">Current Round</span>
-          <p className="font-bold text-lg sm:text-xl text-primary">{score}</p>
+          <p className="font-bold text-lg sm:text-xl text-primary">{formatScore(score)}</p>
         </div>
         <div className="text-center">
           <span className="uppercase text-muted-foreground text-xs sm:text-sm text-white block">Total Points</span>
-          <p className="font-bold text-lg sm:text-xl text-primary">{highScore}</p>
+          <p className="font-bold text-lg sm:text-xl text-primary">{formatScore(highScore)}</p>
         </div>
       </div>
       

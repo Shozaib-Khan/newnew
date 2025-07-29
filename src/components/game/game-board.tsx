@@ -74,7 +74,7 @@ export const GameBoard = memo(({ maze, player, ghosts, gameState }: GameBoardPro
               height: TILE_SIZE,
               top: `${(player.x / maze.length) * 100}%`,
               left: `${(player.y / maze[0].length) * 100}%`,
-              transition: 'top 50ms linear, left 50ms linear', // Fast, smooth transitions
+              transition: 'top 200ms linear, left 200ms linear', // Slightly slower transitions to match PLAYER_SPEED_DIVISOR
               zIndex: 10,
             }}
             direction={player.direction}

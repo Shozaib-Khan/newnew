@@ -18,6 +18,7 @@ interface GameModalProps {
   highScore: number;
   onPlayAgain: () => void;
   onClose: () => void;
+  playsLeft?: number; // Add this prop to check remaining plays
 }
 
 export const GameModal = ({ 
@@ -25,10 +26,17 @@ export const GameModal = ({
   score, 
   highScore, 
   onPlayAgain, 
-  onClose 
+  onClose,
+  playsLeft = 0
 }: GameModalProps) => {
   const isOpen = gameState === 'win' || gameState === 'lose';
   const isNewHighScore = score > 0 && score === highScore;
+  const hasReachedDailyLimit = playsLeft <= 0;
+
+  // Helper function to format scores with max 1 decimal place
+  const formatScore = (value: number) => {
+    return Number(value.toFixed(1));
+  };
 
   const messages = {
     win: {
@@ -73,19 +81,41 @@ export const GameModal = ({
             </p>
           )}
           <p className="text-center text-xl pt-4 font-bold">
-            Final Score: <span className="text-accent">{score}</span>
+            Final Score: <span className="text-accent">{formatScore(score)}</span>
           </p>
+
+          {/* Daily limit reached message */}
+          {hasReachedDailyLimit && (
+            <div className="text-center pt-6 border-t border-border mt-4">
+              <p className="text-destructive text-lg font-bold">
+                Daily Limit Reached
+              </p>
+              <p className="text-muted-foreground text-sm pt-2">
+                Try again tomorrow!
+              </p>
+            </div>
+          )}
         </div>
         
         {/* Footer */}
         <div className="mt-6">
-          <Button 
-            onClick={onPlayAgain} 
-            variant="ghost"
-            className="w-full text-lg py-4 text-primary animate-pulse"
-          >
-            Play Again
-          </Button>
+          {hasReachedDailyLimit ? (
+            <Button 
+              onClick={onClose} 
+              variant="ghost"
+              className="w-full text-lg py-4 text-primary"
+            >
+              Close Game
+            </Button>
+          ) : (
+            <Button 
+              onClick={onPlayAgain} 
+              variant="ghost"
+              className="w-full text-lg py-4 text-primary animate-pulse"
+            >
+              Play Again
+            </Button>
+          )}
         </div>
       </div>
     </div>
