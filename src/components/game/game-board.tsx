@@ -15,16 +15,15 @@ interface GameBoardProps {
   gameState: GameState;
 }
 
+// Changed: Render normal coins as classic small dots instead of icons.
+// Keep Aarna Coin rendering as before.
 const renderCellContent = (cell: { type: number, coin?: string }, key: string) => {
   switch (cell.type) {
-    case 2: // Coin
-      if (cell.coin) {
-        return <Image src={`/icons/${cell.coin}.ico`} alt={`${cell.coin} coin`} width={TILE_SIZE * 1.3} height={TILE_SIZE * 1.3} key={key} className="p-1" />;
-      }
-      return <div key={key} className="w-1.5 h-1.5 bg-primary/80 rounded-full" />;
+    case 2: // Normal Coin - classic dot instead of coin icon
+      return <div key={key} className="w-2 h-2 bg-primary rounded-full" />;
     case 3: // Power Pellet
       return <PowerPelletIcon key={key} className="w-full h-full p-0.5 animate-pulse" />;
-    case 9: // Aarna Coin
+    case 9: // Aarna Coin stays as icon
       return <Image src="/icons/aarna.ico" alt="Aarna coin" width={TILE_SIZE * 1.3} height={TILE_SIZE * 1.3} key={key} className="p-1" />;
     default:
       return null;

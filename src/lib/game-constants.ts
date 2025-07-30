@@ -1,14 +1,20 @@
-export const MAX_POINTS = 100;          // hard cap per play-through
+// src/lib/game-constants.ts
+
+export const MAX_POINTS = 100;          // Hard cap per play-through
 export const TILE_SIZE = 20;
 
-export const GAME_SPEED = 90;
+// GAME_SPEED: base interval in milliseconds per game tick update (move attempts).
+export const GAME_SPEED = 120;          // ~120ms - controls update frequency
+
+// Player moves every tick (divider 1) → faster movement.
+export const PLAYER_SPEED_DIVISOR = 1;
+
+// Ghosts move every 2 ticks → slower movement (half speed player).
 export const GHOST_SPEED_MULTIPLIER = 2;
+
 export const GHOST_FRIGHTENED_DURATION = 7000;
 
-export const PLAYER_SPEED_DIVISOR = 1;   // 1 tile every 2 ticks  (2 = ~½ speed)
-
-
-/* raw values – score is clamped to MAX_POINTS in the engine */
+/* raw values – score clamped to MAX_POINTS in engine */
 export const GHOST_POINTS = 0.5;
 export const AARNA_COIN_POINTS = 5;
 export const NORMAL_COIN_POINTS = 0.2;
